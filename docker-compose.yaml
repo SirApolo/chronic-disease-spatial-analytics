@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  health-ml-env:
+    build: .
+    container_name: health_ml_spatial_container
+    ports:
+      - "8888:8888"   # Jupyter Lab
+      - "5000:5000"   # MLflow UI
+    volumes:
+      - .:/home/jovyan/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - PYDEVD_DISABLE_FILE_VALIDATION=1
+    command: start-notebook.sh --NotebookApp.token='' # Security: No token for local dev
