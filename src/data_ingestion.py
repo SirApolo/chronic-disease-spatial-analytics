@@ -20,12 +20,14 @@ class DataIngestor:
         print(f"[*] Downloading SIH data for {state} - {year}/{month}...")
         try:
             # Downloading data using PySUS
-            df = SIH.download(state, year, month)
+            parquets = SIH.download(state, year, month, groups='RD')  # RD = Hospitalizations
             
             # Creating a filename with timestamp for versioning
             filename = f"SIH_{state}_{year}_{month}.parquet"
             full_path = os.path.join(self.raw_path, filename)
-            
+            print(parquets)
+
+            df = pd.concat([parquet.to_dataframe() for parquet in parquets], ignore_index=True)
             # Saving as Parquet - Industry standard for ML pipelines
             df.to_parquet(full_path, index=False)
             print(f"[+] Successfully saved to {full_path}")
