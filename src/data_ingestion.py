@@ -41,15 +41,16 @@ class DataIngestor:
         """
         print(f"[*] Downloading CNES data for {state} - {year}/{month}...")
         try:
-            # df = CNES.download(group='ST', states=state, years=year, months=month) # ST = Establishments
-            parquets = CNES.download(group='ST', states=state, years=year, months=month) # ST = Establishments
-            filename = f"CNES_ST_{state}_{year}_{month}.parquet"
-            full_path = os.path.join(self.raw_path, filename)
-            print(parquets)
-            
-            df = pd.concat([parquet.to_dataframe() for parquet in parquets], ignore_index=True)
-            df.to_parquet(full_path, index=False)
-            print(f"[+] Successfully saved to {full_path}")
+            for group in ["ST", "LT"]:
+                # df = CNES.download(group='ST', states=state, years=year, months=month) # ST = Establishments
+                parquets = CNES.download(group=group, states=state, years=year, months=month) # ST = Establishments
+                filename = f"CNES_{group}_{state}_{year}_{month}.parquet"
+                full_path = os.path.join(self.raw_path, filename)
+                print(parquets)
+                
+                df = pd.concat([parquet.to_dataframe() for parquet in parquets], ignore_index=True)
+                df.to_parquet(full_path, index=False)
+                print(f"[+] Successfully saved to {full_path}")
             return df
         except Exception as e:
             print(f"[-] Error downloading CNES: {e}")
