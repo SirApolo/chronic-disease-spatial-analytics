@@ -23,7 +23,7 @@ class DataIngestor:
             parquets = SIH.download(state, year, month, groups='RD')  # RD = Hospitalizations
             
             # Creating a filename with timestamp for versioning
-            filename = f"SIH_{state}_{year}_{month}.parquet"
+            filename = f"SIH_RD_{state}_{year}_{month}.parquet"
             full_path = os.path.join(self.raw_path, filename)
             print(parquets)
 

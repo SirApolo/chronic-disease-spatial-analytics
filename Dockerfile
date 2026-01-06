@@ -27,7 +27,8 @@ RUN pip install --no-cache-dir \
     xgboost \
     h3 \
     python-dotenv \
-    'pyarrow>=22.0.*'
+    'pyarrow>=22.0.*' \
+    geobr
 
 # Set the working directory
 WORKDIR /home/jovyan/work
