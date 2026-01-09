@@ -183,5 +183,5 @@ cython_debug/
 # Parquet data files
 *.parquet
 
-# Geopandas data files
+# Geopackage data files
 *.gpkg
