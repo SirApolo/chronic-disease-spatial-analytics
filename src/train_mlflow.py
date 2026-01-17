@@ -57,7 +57,7 @@ def train_and_log():
         plt.ylabel("Residuals (Actual - Predicted)")
         plt.title("Residual Analysis - Chronic Disease Costs (PR)")
         
-        plot_path = "residuals_test.png"
+        plot_path = "../plots/residuals_test.png"
         plt.savefig(plot_path)
         mlflow.log_artifact(plot_path)
         os.remove(plot_path) # Clean up local file
