@@ -30,5 +30,7 @@ RUN pip install --no-cache-dir \
     'pyarrow>=22.0.*' \
     geobr
 
+RUN pip install --no-cache-dir sidrapy
+
 # Set the working directory
 WORKDIR /home/jovyan/work

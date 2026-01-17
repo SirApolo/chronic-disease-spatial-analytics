@@ -185,3 +185,6 @@ cython_debug/
 
 # Geopackage data files
 *.gpkg
+
+# CSV data files
+*.csv
