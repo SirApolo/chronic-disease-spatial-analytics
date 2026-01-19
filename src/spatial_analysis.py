@@ -28,7 +28,8 @@ class SpatialProcessor:
         Joins Health Data (6-digit IBGE) with Map Data (7-digit IBGE).
         """
         # 1. Load Processed Health Data
-        health_file = os.path.join(self.processed_path, f"final_processed_{state}_{year}_{month}.parquet")
+        # health_file = os.path.join(self.processed_path, f"final_processed_{state}_{year}_{month}.parquet")
+        health_file = os.path.join(self.processed_path, f"final_features_{state}.parquet")
         if not os.path.exists(health_file):
             print("[-] Processed health file not found. Run preprocessing first.")
             return

@@ -116,6 +116,25 @@ services:
       timeout: 5s
       retries: 30
 
+  streamlit-app:
+    build:
+      context: ./app
+    container_name: streamlit-app
+    depends_on:
+      mlflow:
+        condition: service_healthy
+    environment:
+      MLFLOW_TRACKING_URI: http://${MLFLOW_HOST}:${MLFLOW_PORT}
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8501/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
 volumes:
   pgdata:
   minio-data:
