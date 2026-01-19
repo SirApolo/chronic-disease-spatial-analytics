@@ -64,6 +64,7 @@ docker-compose up --build
 * **MLflow UI**: http://localhost:5000
 
 3. Pipeline Flow
+
 The project follows a modular execution:
     1. **Ingestion**: Downloads SIH/SUS and CNES data.
     2. **Preprocessing**: Merges healthcare records with Sidrapy (Censo 2022).
